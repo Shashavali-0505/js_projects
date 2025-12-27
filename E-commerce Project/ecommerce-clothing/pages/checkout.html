@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - StyleHub</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .checkout-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+        }
+        
+        .checkout-section {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #3498db;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .payment-method:hover {
+            border-color: #3498db;
+        }
+        
+        .payment-method.active {
+            border-color: #3498db;
+            background-color: #f8fafc;
+        }
+        
+        .payment-method input {
+            margin-right: 1rem;
+        }
+        
+        .payment-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: #666;
+        }
+        
+        .card-details {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        
+        .order-summary {
+            position: sticky;
+            top: 100px;
+        }
+        
+        .order-items {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 1.5rem;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .order-item-info {
+            flex: 1;
+        }
+        
+        .order-item-name {
+            display: block;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .order-item-category {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .order-item-details {
+            text-align: right;
+        }
+        
+        .order-item-price {
+            display: block;
+            font-weight: 600;
+            color: #e74c3c;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .summary-total {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            border-bottom: none;
+        }
+        
+        .btn-place-order {
+            width: 100%;
+            padding: 1rem;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-place-order:hover {
+            background-color: #218838;
+        }
+        
+        .btn-place-order:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+        
+        .secure-checkout {
+            text-align: center;
+            margin-top: 1rem;
+            color: #28a745;
+            font-size: 0.9rem;
+        }
+        
+        .secure-checkout i {
+            margin-right: 0.5rem;
+        }
+        
+        .save-address {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .order-summary {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">SH</div>
+                <span class="logo-text">StyleHub</span>
+            </a>
+            <div class="nav-menu">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#men">Men</a>
+                <a href="../index.html#women">Women</a>
+                <a href="../index.html#kids">Kids</a>
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <div class="auth-buttons">
+                    <a href="./pages/login.html" class="btn-login">Login</a>
+                    <a href="./pages/register.html" class="btn-register">Register</a>
+                </div>
+                <div class="user-profile">
+                    <span class="username">John</span>
+                    <button class="btn-logout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="checkout-container">
+        <!-- Left Column - Form -->
+        <div class="checkout-form">
+            <!-- Shipping Address -->
+            <div class="checkout-section">
+                <h2 class="section-title">Shipping Address</h2>
+                <form id="shippingForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" 
+                                   placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" 
+                                   placeholder="john@example.com" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" 
+                                   placeholder="+1 234 567 8900" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <select id="country" name="country" required>
+                                <option value="">Select Country</option>
+                                <option value="US">United States</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="CA">Canada</option>
+                                <option value="AU">Australia</option>
+                                <option value="IN">India</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">Street Address</label>
+                        <input type="text" id="address" name="address" 
+                               placeholder="123 Main St" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="city" 
+                                   placeholder="New York" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State/Province</label>
+                            <input type="text" id="state" name="state" 
+                                   placeholder="NY" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="zipCode">ZIP/Postal Code</label>
+                            <input type="text" id="zipCode" name="zipCode" 
+                                   placeholder="10001" required>
+                        </div>
+                    </div>
+                    
+                    <div class="save-address">
+                        <input type="checkbox" id="saveAddress" name="saveAddress" checked>
+                        <label for="saveAddress">Save this address for future use</label>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Payment Method -->
+            <div class="checkout-section">
+                <h2 class="section-title">Payment Method</h2>
+                <div class="payment-methods">
+                    <label for="mode1">
+                        <div class="payment-method active" data-method="credit-card" id="payment">
+                            <input type="radio" name="payment" checked id="mode1">
+                            <i class="fas fa-credit-card payment-icon"></i>
+                            <span>Credit/Debit Card</span>
+                        </div>
+                    </label>
+                    
+                    <label for="mode2">
+                        <div class="payment-method" data-method="paypal" id="payment">
+                            <input type="radio" name="payment" id="mode2">
+                            <i class="fab fa-paypal payment-icon"></i>
+                            <span>PayPal</span>
+                        </div>
+                    </label>
+                    
+                    <label for="mode3">
+                        <div class="payment-method" data-method="cod" id="payment" for="mode3">
+                            <input type="radio" name="payment" id="mode3">
+                            <i class="fas fa-money-bill-wave payment-icon"></i>
+                            <span>Cash on Delivery</span>
+                        </div>
+                    </label>
+                </div>
+                
+                <!-- Card Details -->
+                <div class="card-details" id="cardDetails">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cardNumber">Card Number</label>
+                            <input type="text" id="cardNumber" 
+                                   placeholder="1234 5678 9012 3456" maxlength="19">
+                        </div>
+                        <div class="form-group">
+                            <label for="cardName">Name on Card</label>
+                            <input type="text" id="cardName" 
+                                   placeholder="JOHN DOE">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiryDate">Expiry Date</label>
+                            <input type="text" id="expiryDate" 
+                                   placeholder="MM/YY" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="password" id="cvv" 
+                                   placeholder="123" maxlength="4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Column - Order Summary -->
+        <div class="order-summary">
+            <div class="checkout-section">
+                <h2 class="section-title">Order Summary</h2>
+                
+                <div class="order-items" id="orderItems">
+                    <!-- Order items will be loaded here -->
+                </div>
+                
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Delivery Charges</span>
+                        <span id="delivery">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax</span>
+                        <span id="tax">$0.00</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Total</span>
+                        <span id="total">$0.00</span>
+                    </div>
+                </div>
+                
+                <form id="checkoutForm">
+                    <button type="submit" class="btn-place-order">
+                        <i class="fas fa-lock"></i> Place Order
+                    </button>
+                </form>
+                
+                <div class="secure-checkout">
+                    <i class="fas fa-shield-alt"></i>
+                    Secure Checkout · SSL Encrypted
+                </div>
+            </div>
+            
+            <div class="checkout-section">
+                <h3 class="section-title">Need Help?</h3>
+                <p>Call us at <b>+91 9876543210</b></p>
+                <p>Email: <b>YourStyleHub@gmail.com</b></p>
+                <p>We're available <b>24/7</b></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/checkout.js"></script>
+    <script src="../scripts/cart.js"></script>
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/main.js"></script>
+</body>
+</html>

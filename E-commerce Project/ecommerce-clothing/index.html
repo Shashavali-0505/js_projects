@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleHub - Premium Clothing Store</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">SH</div>
+                <span class="logo-text">StyleHub</span>
+            </a>
+            <!-- <a href="index.html" class="logo">StyleHub</a> -->
+            <div class="nav-menu">
+                <a href="index.html" class="active">Home</a>
+                <a href="#men">Men</a>
+                <a href="#women">Women</a>
+                <a href="#kids">Kids</a>
+                <a href="./pages/cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <div class="auth-buttons">
+                    <a href="./pages/login.html" class="btn-login">Login</a>
+                    <a href="./pages/register.html" class="btn-register">Register</a>
+                </div>
+                <div class="user-profile">
+                    <span class="username">John</span>
+                    <button class="btn-logout">Logout</button>
+                </div>
+            </div>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Fashion is a way to express yourself without having to speak</h1>
+            <p>Discover premium clothing for Men, Women & Kids</p>
+            <a href="#categories" class="btn-shop">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <h2>Shop by Category</h2>
+            <div class="category-grid">
+                <div class="category-card" id="men">
+                    <img src="images/men-category.jpg" alt="Men's Fashion">
+                    <div class="category-overlay">
+                        <h3>Men's Collection</h3>
+                        <a href="#men-products" class="btn-view">View Collection</a>
+                    </div>
+                </div>
+                <div class="category-card" id="women">
+                    <img src="images/women-category.jpg" alt="Women's Fashion">
+                    <div class="category-overlay">
+                        <h3>Women's Collection</h3>
+                        <a href="#women-products" class="btn-view">View Collection</a>
+                    </div>
+                </div>
+                <div class="category-card" id="kids">
+                    <img src="images/kids-category.jpg" alt="Kids Fashion">
+                    <div class="category-overlay">
+                        <h3>Kids Collection</h3>
+                        <a href="#kids-products" class="btn-view">View Collection</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <!-- Men's Products -->
+            <div class="product-category" id="men-products">
+                <h2>Men's Collection</h2>
+                <div class="product-grid" id="men-products-grid">
+                    <!-- Products will be loaded via JavaScript -->
+                </div>
+            </div>
+
+            <!-- Women's Products -->
+            <div class="product-category" id="women-products">
+                <h2>Women's Collection</h2>
+                <div class="product-grid" id="women-products-grid">
+                    <!-- Products will be loaded via JavaScript -->
+                </div>
+            </div>
+
+            <!-- Kids Products -->
+            <div class="product-category" id="kids-products">
+                <h2>Kids Collection</h2>
+                <div class="product-grid" id="kids-products-grid">
+                    <!-- Products will be loaded via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>StyleHub</h3>
+                    <p>Premium clothing for the entire family</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#men">Men</a>
+                    <a href="#women">Women</a>
+                    <a href="#kids">Kids</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>YourStyleHub@gmail.com</p>
+                    <p>+91 9876543210</p>
+                </div>
+            </div>
+            <p class="copyright">© 2025 StyleHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Product Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-product-details">
+                <!-- Product details loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="./scripts/auth.js"></script>
+    <script src="./scripts/main.js"></script>
+    
+</body>
+</html>

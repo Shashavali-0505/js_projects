@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed - StyleHub</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .success-container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .success-card {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .success-icon {
+            font-size: 5rem;
+            color: #28a745;
+            margin-bottom: 1.5rem;
+            animation: bounce 1s ease infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .success-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .success-message {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .order-details {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .order-detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .order-detail-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .order-id {
+            font-weight: bold;
+            color: #3498db;
+            font-size: 1.2rem;
+        }
+        
+        .whats-next {
+            background: #e8f4fc;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .whats-next h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .next-steps {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .next-steps li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background: white;
+            border-radius: 5px;
+        }
+        
+        .next-steps li i {
+            color: #28a745;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .btn-track {
+            background-color: #3498db;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-shop-more {
+            background-color: #2ecc71;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-track:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-shop-more:hover {
+            background-color: #27ae60;
+        }
+        
+        .thank-you {
+            margin-top: 2rem;
+            font-style: italic;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .success-card {
+                padding: 2rem 1rem;
+            }
+            
+            .success-title {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn-track, .btn-shop-more {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">SH</div>
+                <span class="logo-text">StyleHub</span>
+            </a>
+            <div class="nav-menu">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#men">Men</a>
+                <a href="../index.html#women">Women</a>
+                <a href="../index.html#kids">Kids</a>
+                <a href="../pages/cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <div class="auth-buttons">
+                    <a href="./pages/login.html" class="btn-login">Login</a>
+                    <a href="./pages/register.html" class="btn-register">Register</a>
+                </div>
+                <div class="user-profile">
+                    <span class="username">John</span>
+                    <button class="btn-logout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="success-container">
+        <div class="success-card">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            
+            <h1 class="success-title">Congratulations!</h1>
+            <p class="success-message">
+                Your order has been placed successfully. Thank you for choosing StyleHub!
+                <br>We've sent a confirmation email with all the details.
+            </p>
+            
+            <!-- Order Details will be populated by JavaScript -->
+            <div class="order-details" id="orderDetails">
+                <!-- Order details loaded here -->
+            </div>
+            
+            <div class="whats-next">
+                <h3>What's Next?</h3>
+                <ul class="next-steps">
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Order Confirmation</strong>
+                            <p>Check your email for order details and tracking information</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-truck"></i>
+                        <div>
+                            <strong>Shipping Update</strong>
+                            <p>You'll receive a shipping confirmation within 24 hours</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-box-open"></i>
+                        <div>
+                            <strong>Delivery</strong>
+                            <p>Expected delivery: 3-5 business days</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="action-buttons">
+                <a href="#" class="btn-track">
+                    <i class="fas fa-shipping-fast"></i> Track Order
+                </a>
+                <a href="../index.html" class="btn-shop-more">
+                    <i class="fas fa-shopping-bag"></i> Continue Shopping
+                </a>
+            </div>
+            
+            <p class="thank-you">
+                Thank you for shopping with us! We hope to see you again soon.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>StyleHub</h3>
+                    <p>Premium clothing for the entire family</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Shipping Policy</a>
+                    <a href="#">Return Policy</a>
+                    <a href="#">FAQ</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>YourStyleHub@gmail.com</p>
+                    <p>+91 9876543210</p>
+                </div>
+            </div>
+            <p class="copyright">© 2025 StyleHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Get order ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderId = urlParams.get('orderId') || 'ORD' + Date.now();
+        
+        // Get order total from session storage
+        const orderTotal = sessionStorage.getItem('orderTotal') || '0.00';
+        
+        // Display order details
+        const orderDetails = document.getElementById('orderDetails');
+        orderDetails.innerHTML = `
+            <div class="order-detail-row">
+                <span>Order Number:</span>
+                <span class="order-id">${orderId}</span>
+            </div>
+            <div class="order-detail-row">
+                <span>Order Date:</span>
+                <span>${new Date().toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                })}</span>
+            </div>
+            <div class="order-detail-row">
+                <span>Order Total:</span>
+                <span style="font-weight: bold; color: #e74c3c;">₹${orderTotal}</span>
+            </div>
+            <div class="order-detail-row">
+                <span>Payment Status:</span>
+                <span style="color: #28a745; font-weight: bold;">Paid</span>
+            </div>
+            <div class="order-detail-row">
+                <span>Delivery Status:</span>
+                <span style="color: #3498db; font-weight: bold;">Processing</span>
+            </div>
+        `;
+        
+        // Clear cart and session data
+        localStorage.removeItem('cart');
+        sessionStorage.removeItem('orderTotal');
+        sessionStorage.removeItem('selectedPaymentMethod');
+        
+        // Update cart count
+        const cartCountElements = document.querySelectorAll('.cart-count');
+        cartCountElements.forEach(element => {
+            element.textContent = '0';
+        });
+    </script>
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/cart.js"></script>
+    <script src="../scripts/checkout.js"></script>
+</body>
+</html>

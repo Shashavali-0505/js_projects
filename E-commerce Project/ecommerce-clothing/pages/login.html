@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - StyleHub</title>
+    <link rel="stylesheet" href="../styles/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .password-input {
+            position: relative;
+        }
+        
+        .password-input input {
+            width: 95%;
+            padding-right: 40px;
+        }
+        
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+        }
+        
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .forgot-password {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <h1>Welcome Back</h1>
+            <p class="auth-subtitle">Sign in to your StyleHub account</p>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required 
+                           placeholder="Enter your email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-input">
+                        <input type="password" id="password" name="password" required 
+                               placeholder="Enter your password">
+                        <button type="button" class="toggle-password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="remember-forgot">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                
+                <button type="submit" class="btn-auth">Sign In</button>
+            </form>
+            
+            <p class="auth-footer">
+                Don't have an account? <a href="register.html">Sign Up</a>
+            </p>
+            
+            <!-- <div class="auth-divider">
+                <span>or continue with</span>
+            </div>
+            
+            <div class="social-auth">
+                <button class="btn-social google">
+                    <i class="fab fa-google"></i> Google
+                </button>
+                <button class="btn-social facebook">
+                    <i class="fab fa-facebook"></i> Facebook
+                </button>
+            </div> -->
+        </div>
+        
+        <div class="auth-side">
+            <div class="auth-side-content">
+                <h2>New to StyleHub?</h2>
+                <p>Create an account and enjoy these benefits:</p>
+                <ul>
+                    <li>✓ Fast checkout process</li>
+                    <li>✓ Track your orders</li>
+                    <li>✓ Save your favorite items</li>
+                    <li>✓ Exclusive member discounts</li>
+                    <li>✓ Personalized recommendations</li>
+                </ul>
+                <a href="register.html" class="btn-shop" style="margin-top: 2rem; display: inline-block;">
+                    Create Account
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../scripts/auth.js"></script>
+</body>
+</html>
